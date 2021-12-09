@@ -14,8 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class WebClientConfiguration {
-    private static final String BASE_URL = "https://gridforecast.com/api/v1/forecast";
-    public static final int TIMEOUT = 300000;
+    private static final String BASE_URL = "https://gridforecast.com/api/forecast/full/";
+    public static final int TIMEOUT = 300000; //todo ???
 
     @Bean
     public WebClient webClientWithTimeout() {
