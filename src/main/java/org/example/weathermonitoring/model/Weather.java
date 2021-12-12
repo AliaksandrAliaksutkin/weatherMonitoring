@@ -1,6 +1,7 @@
 package org.example.weathermonitoring.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,26 +22,26 @@ public class Weather {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "date")
-    private LocalDateTime dateTime;
+    @Column(name = "city")
+    private String city;
 
-    @Column(name = "locality")
-    private String locality;
+    @Column(name = "date")
+    private LocalDateTime date;
 
     @Column(name = "temp")
-//    @JsonProperty("t")
+    @JsonProperty("t")
     private double temp;
 
     @Column(name = "pressure")
-//    @JsonProperty("sp")
+    @JsonProperty("sp")
     private String pressure;
 
     @Column(name = "wind")
-//    @JsonProperty("speed10")
+    @JsonProperty("speed10")
     private String wind;
 
-    @Column(name = "rain")
-//    @JsonProperty("rain")
+    @Column(name = "crain")
+    @JsonProperty("rain")
     private String rain;
 
 }
