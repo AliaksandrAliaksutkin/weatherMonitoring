@@ -2,6 +2,7 @@ package org.example.weathermonitoring.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.example.weathermonitoring.exception.NoEntityException;
 import org.example.weathermonitoring.model.City;
 import org.example.weathermonitoring.model.Weather;
 import org.example.weathermonitoring.service.WeatherService;
@@ -19,12 +20,11 @@ import java.time.LocalDateTime;
 public class ForecastWeatherController {
     private final WeatherService weatherService;
 
-    @GetMapping("get/{city}")
+    @GetMapping("/get/{city}")
     public Weather getWeather (@PathVariable City city,
                                @RequestParam (required = false)
                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                               LocalDateTime date){
+                               LocalDateTime date) throws NoEntityException {
         return weatherService.findWeatherByCityAndDate(city, date);
-
     }
 }

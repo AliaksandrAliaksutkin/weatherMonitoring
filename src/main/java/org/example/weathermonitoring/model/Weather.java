@@ -1,6 +1,7 @@
 package org.example.weathermonitoring.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "weather")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -40,8 +42,8 @@ public class Weather {
     @JsonProperty("speed10")
     private String wind;
 
-    @Column(name = "crain")
-    @JsonProperty("rain")
+    @Column(name = "rain")
+    @JsonProperty("crain")
     private String rain;
 
 }

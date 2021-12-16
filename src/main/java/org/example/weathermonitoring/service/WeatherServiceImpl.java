@@ -39,7 +39,7 @@ public class WeatherServiceImpl implements WeatherService {
     public Weather weatherAdd(City city) {
         Weather weather = webClient
                 .get()
-                .uri(  city + data + token)
+                .uri(city.getUri()+data+token)
                 .retrieve()
                 .bodyToMono(Weather.class)
                 .block();
@@ -57,7 +57,7 @@ public class WeatherServiceImpl implements WeatherService {
                     city.name()).orElse(weatherAdd(city));
         }
         return cityWeatherRepo.findFirstByCityAndDateBeforeOrderByDateDesc(
-                city.name(), date).orElseThrow(() -> new NoEntityException("Данные за указанный город отсутствует"));
+                city.name(), date).orElseThrow(() -> new NoEntityException("Данные отсутствует"));
     }
 }
 
