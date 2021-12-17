@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Repository
-public interface CityWeatherRepo extends JpaRepository <Weather,Long> {
+public interface CityWeatherRepo extends JpaRepository<Weather, Long> {
     Optional<Weather> findFirstByCityOrderByDateDesc(String city);
 
     Optional<Weather> findFirstByCityAndDateBeforeOrderByDateDesc(String city, LocalDateTime date);

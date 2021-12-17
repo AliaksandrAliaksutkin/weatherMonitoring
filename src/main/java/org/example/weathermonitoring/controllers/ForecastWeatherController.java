@@ -21,10 +21,10 @@ public class ForecastWeatherController {
     private final WeatherService weatherService;
 
     @GetMapping("/get/{city}")
-    public Weather getWeather (@PathVariable City city,
-                               @RequestParam (required = false)
-                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                               LocalDateTime date) throws NoEntityException {
+    public Weather getWeather(@PathVariable City city,
+                              @RequestParam(required = false)
+                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                                      LocalDateTime date) throws NoEntityException {
         return weatherService.findWeatherByCityAndDate(city, date);
     }
 }

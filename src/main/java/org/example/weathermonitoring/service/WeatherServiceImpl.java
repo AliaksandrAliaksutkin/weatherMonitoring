@@ -1,6 +1,5 @@
 package org.example.weathermonitoring.service;
 
-
 import lombok.RequiredArgsConstructor;
 import org.example.weathermonitoring.exception.NoEntityException;
 import org.example.weathermonitoring.model.City;
@@ -40,7 +39,7 @@ public class WeatherServiceImpl implements WeatherService {
     public Weather weatherAdd(City city) {
         Weather weather = webClient
                 .get()
-                .uri(city.getUri()+data+token)
+                .uri(city.getUri() + data + token)
                 .retrieve()
                 .bodyToMono(Weather.class)
                 .block();
@@ -50,7 +49,6 @@ public class WeatherServiceImpl implements WeatherService {
 
         return weather;
     }
-
 
     @Override
     public Weather findWeatherByCityAndDate(City city, LocalDateTime date) {
