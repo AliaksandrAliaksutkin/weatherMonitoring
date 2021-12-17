@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -29,9 +30,9 @@ public class WeatherServiceImpl implements WeatherService {
     @Scheduled(fixedRate = 300000)
     public void saveWeather() {
         weatherAdd(City.SPOROVO);
+//        weatherAdd(City.EZERISHCHE);
         weatherAdd(City.BERYOZA);
         weatherAdd(City.BREST);
-        weatherAdd(City.KOBRIN);
         weatherAdd(City.MINSK);
     }
 
@@ -43,9 +44,10 @@ public class WeatherServiceImpl implements WeatherService {
                 .retrieve()
                 .bodyToMono(Weather.class)
                 .block();
-        weather.setCity(city.name());
+        Objects.requireNonNull(weather).setCity(city.name());
         weather.setDate(LocalDateTime.now());
         cityWeatherRepo.save(weather);
+
         return weather;
     }
 

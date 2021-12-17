@@ -8,7 +8,6 @@ services:
       POSTGRES_USER: docker
     container_name: postgresDB
     ports:
-
       - "5432:5432"
     volumes:
       - ./var/lib/postgresql/data
