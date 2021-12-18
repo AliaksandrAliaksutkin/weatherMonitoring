@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 
 public interface WeatherService {
 
-    void saveWeather();
-
-    Weather weatherAdd(City city);
+//    void saveWeather();
+//
+//    Weather weatherAdd(City city);
 
     Weather findWeatherByCityAndDate(City city, LocalDateTime date);
 
