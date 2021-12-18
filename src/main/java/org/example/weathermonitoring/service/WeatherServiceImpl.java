@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -18,7 +19,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Service
 @EnableScheduling
-//@Transactional
+@EnableTransactionManagement
 public class WeatherServiceImpl implements WeatherService {
     private final CityWeatherRepo cityWeatherRepo;
     private final WebClient webClient;
@@ -28,17 +29,19 @@ public class WeatherServiceImpl implements WeatherService {
     private String data;
 
 //    @Override
+    @Transactional
     @Scheduled(fixedRate = 300000)
-    private void saveWeather() {
+    protected void saveWeather() {
         weatherAdd(City.SPOROVO);
-//        weatherAdd(City.EZERISHCHE);
+        weatherAdd(City.ROM);
         weatherAdd(City.BERYOZA);
         weatherAdd(City.BREST);
         weatherAdd(City.MINSK);
     }
 
 //    @Override
-    private Weather weatherAdd(City city) {
+    @Transactional
+    protected Weather weatherAdd(City city) {
         Weather weather = webClient
                 .get()
                 .uri(city.getUri() + data + token)
@@ -53,6 +56,7 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
+    @Transactional
     public Weather findWeatherByCityAndDate(City city, LocalDateTime date) {
         if (date == null) {
             return cityWeatherRepo.findFirstByCityOrderByDateDesc(

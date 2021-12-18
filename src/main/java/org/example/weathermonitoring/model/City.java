@@ -10,7 +10,7 @@ public enum City {
     BERYOZA("/52.5203;24.9643"),
     MINSK("/53.8980;27.5606"),
     BREST("/52.1096;23.7182"),
-    EZERISHCHE("/55.8383;29.9833");
+    ROM("/41.9053;12.4941");
 
     private final String uri;
 
