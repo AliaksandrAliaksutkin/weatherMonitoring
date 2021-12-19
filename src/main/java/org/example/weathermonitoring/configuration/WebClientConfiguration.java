@@ -10,6 +10,7 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.http.codec.ClientCodecConfigurer;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.http.codec.json.Jackson2JsonEncoder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 import static org.springframework.http.MediaType.TEXT_HTML;
 
 @Configuration
+//@EnableTransactionManagement
 public class WebClientConfiguration {
     private static final String BASE_URL = "https://gridforecast.com/api/v1/forecast";
     public static final int TIMEOUT = 5000;
