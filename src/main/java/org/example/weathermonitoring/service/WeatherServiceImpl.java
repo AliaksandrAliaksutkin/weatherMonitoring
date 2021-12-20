@@ -18,7 +18,6 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Service
 @EnableScheduling
-//@EnableTransactionManagement
 public class WeatherServiceImpl implements WeatherService {
     private final CityWeatherRepo cityWeatherRepo;
     private final WebClient webClient;
@@ -36,7 +35,7 @@ public class WeatherServiceImpl implements WeatherService {
         weatherAdd(City.MINSK);
     }
 
-    protected Weather weatherAdd(City city) {
+    private Weather weatherAdd(City city) {
         Weather weather = webClient
                 .get()
                 .uri(city.getUri() + data + token)
@@ -51,7 +50,7 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Weather findWeatherByCityAndDate(City city, LocalDateTime date) {
         if (date == null) {
             return cityWeatherRepo.findFirstByCityOrderByDateDesc(
